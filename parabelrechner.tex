@@ -1,0 +1,82 @@
+\documentclass{article}
+\usepackage{pgf}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\pagestyle{empty}
+\usepackage[left=2.5cm,top=2cm,right=2.5cm,bottom=2cm,bindingoffset=0.5cm]{geometry}
+
+
+\setlength\parindent{0pt}
+%Die Werte der Parabel lauten
+\pgfmathsetmacro{\a}{4}
+\pgfmathsetmacro{\b}{3}
+\pgfmathsetmacro{\c}{-2}
+\pgfmathsetmacro{\xs}{-\b/(2*\a)}
+\pgfmathsetmacro{\ys}{\c-\b*\b/(4*\a)}
+
+%Die Werte der Gerade lauten
+\pgfmathsetmacro{\m}{-3}
+\pgfmathsetmacro{\t}{1}
+
+\begin{document}
+\begin{Huge}
+Parabelrechner
+\end{Huge}
+\\ \\
+
+Die Parabel hat die Gleichung: $y = \a x^2 + \b x + \c$\\
+Die Parabel hat die Gleichung in der Scheitelform:$y = \a (x-\xs)^2+\ys$\\ \\
+Die Gerade hat die Gleichung:  $y= \m x+ \t$.\\
+
+Der Scheitelpunkt der Parabel ist: $S(\xs | \ys)$ \\
+
+Die Nullstelle der Parabel ist bei: $x_1= \pgfmathparse{
+(-\b-sqrt(\b^2-4*\a*\c))/(2*\a)
+}\pgfmathresult \wedge x_2 = \pgfmathparse{
+(-\b+sqrt(\b^2-4*\a*\c))/(2*\a)
+)}\pgfmathresult$ \\
+
+
+Die Nullstelle der Gerade ist: $x= \pgfmathparse{-\t/\m}\pgfmathresult $ \\
+
+Die Differenz $y_P - y_g$ ist: $\a x^2+ \pgfmathparse{\b-\m}\pgfmathresult x + \pgfmathparse{\c-\t}\pgfmathresult $ \\
+
+Die Differenz $y_g - y_p$ ist: $-\a x^2+ \pgfmathparse{\m-\b}\pgfmathresult x + \pgfmathparse{\t-\c}\pgfmathresult $ \\
+
+
+Die Schnittpunkte von Parabel und Gerade liegen bei: 
+$S_1(\pgfmathparse{
+(-(\b-\m)-sqrt((\b-\m)^2-4*\a*(\c-\t)))/(2*\a)
+}\pgfmathresult | \pgfmathparse{\m*
+(-(\b-\m)-sqrt((\b-\m)^2-4*\a*(\c-\t)))/(2*\a)+\t
+}\pgfmathresult )$ und
+$S_2(\pgfmathparse{
+(-(\b-\m)+sqrt((\b-\m)^2-4*\a*(\c-\t)))/(2*\a)
+}\pgfmathresult | \pgfmathparse{\m*
+(-(\b-\m)+sqrt((\b-\m)^2-4*\a*(\c-\t)))/(2*\a)+\t
+}\pgfmathresult )$ \\
+\\ \\
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\begin{axis}[
+x=1.0cm,y=1.0cm,
+axis lines=middle,
+ymajorgrids=true,
+xmajorgrids=true,
+xmin=-5.3000000000000025,
+xmax=6.3,
+ymin=-6.679999999999995,
+ymax=6.299999999999998,
+xtick={-5.0,-4.0,...,6.0},
+ytick={-6.0,-5.0,...,6.0},]
+\clip(-5.3,-6.68) rectangle (6.3,6.3);
+\draw [samples=50,rotate around={180.:(\xs,\ys)},xshift=\xs cm,yshift=\ys cm,line width=1.pt,domain=-2.25:2.25)] plot (\x,{(\x)^2/2/(-1/\a});
+\draw [line width=1.pt,domain=-5.3:6.3] plot(\x,{(\t \m*\x)/1.});
+\end{axis}
+\end{tikzpicture}
+
+
+
+\end{document}
