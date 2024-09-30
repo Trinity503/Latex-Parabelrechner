@@ -72,8 +72,8 @@ ymax=6.299999999999998,
 xtick={-5.0,-4.0,...,6.0},
 ytick={-6.0,-5.0,...,6.0},]
 \clip(-5.3,-6.68) rectangle (6.3,6.3);
-\draw [samples=50,rotate around={180.:(\xs,\ys)},xshift=\xs cm,yshift=\ys cm,line width=1.pt,domain=-2.25:2.25)] plot (\x,{(\x)^2/2/(-1/\a});
-\draw [line width=1.pt,domain=-5.3:6.3] plot(\x,{(\t \m*\x)/1.});
+\draw [samples=50,rotate around={180.:(\xs,\ys)},xshift=\xs cm,yshift=\ys cm,line width=1.pt,domain=-6.25:6.25)] plot (\x,{-\a*(\x)^2});
+\draw [line width=1.pt,domain=-5.3:6.3] plot(\x,{(\t+\m*\x)/1.});
 \end{axis}
 \end{tikzpicture}
 
